@@ -12,8 +12,12 @@
 
   async function loadProjects() {
     try {
-      const response = await api.get("/projects/");
-      projects.value = response.data;
+      const response = await api.get("/projects", {
+        params: {
+          page: 1
+        }
+      });
+      projects.value = response.data.results;
     } catch(e) {
       console.error(e);
     }
