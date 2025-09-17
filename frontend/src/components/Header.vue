@@ -1,5 +1,7 @@
 <script setup>
   import { ref, computed } from "vue";
+  import { useI18n } from "vue-i18n";
+  const { locale } = useI18n()
   const showLanguageSelect = ref(false);
   const currentLang = ref('en');
 
@@ -27,6 +29,7 @@
 
   function selectLang(key) {
     currentLang.value = key;
+    locale.value = key
   }
 </script>
 

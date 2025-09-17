@@ -1,11 +1,15 @@
 <script setup>
     import { defineProps } from 'vue';
-    import { get_fab_icon } from '../app/icons';
+    import { useI18n } from 'vue-i18n';
+    import { get_fab_icon } from '../app/icons/index';
+
+
+    const { t } = useI18n();
 
     const props = defineProps({
         name: String,
         fab_icon: String,
-        link: String
+        url: String
     })
 </script>
 
@@ -21,8 +25,8 @@
                 </div>
 
                 <div>
-                    <n-button class="custom-button" type="Default" tag="a" :href="props.link" target="_blank">
-                        Go to link
+                    <n-button class="custom-button" type="Default" tag="a" :href="props.url" target="_blank">
+                        {{t('go to link')}}
                     </n-button>
                 </div>
 

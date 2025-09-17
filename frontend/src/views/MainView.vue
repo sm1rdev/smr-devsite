@@ -1,13 +1,16 @@
 <script setup>
   import { reactive, onMounted } from 'vue';
-  import api from '../app/api';
+  import { useI18n } from 'vue-i18n'
+  import api from '../app/api/index';
   import Header from '../components/Header.vue';
   import Project from '../components/Project.vue';
-  import Social from '../components/Social.vue';
+  import Link from '../components/Link.vue';
 
+
+  const { t } = useI18n()
 
   const projects = reactive([]);
-  const socials = reactive([])
+  const links = reactive([])
 
 
   async function loadProjects() {
@@ -25,8 +28,8 @@
 
   async function loadSocials() {
     try {
-      const response = await api.get("/socials/");
-      socials.value = response.data;
+      const response = await api.get("/links/");
+      links.value = response.data;
     } catch(e) {
       console.error(e);
     }
@@ -47,7 +50,7 @@
     <!-- Content -->
     <n-layout-content style="background-color:#191919; color: white; flex: 1; padding: 20px;">
 
-      <n-card title="Projects" size="large"
+      <n-card :title="t('projects')" size="large"
         :theme-overrides="{
           titleTextColor: '#ffffff'
         }"
@@ -62,7 +65,7 @@
         </n-list>
       </n-card>
 
-      <n-card title="Links" size="large"
+      <n-card :title="t('links')" size="large"
         :theme-overrides="{
           titleTextColor: '#ffffff'
         }"
@@ -70,8 +73,8 @@
         <n-list :theme-overrides="{
           borderColor: 'transparent'
         }" style="background-color: transparent;"
-        v-for="(social, index) in socials.value" :key="index">
-          <Social :name="social.name" :fab_icon="social.fab_icon" :link="social.link"/>
+        v-for="(link, index) in links.value" :key="index">
+          <Link :name="link.name" :fab_icon="link.fab_icon" :url="link.url"/>
         </n-list>
       </n-card>
 

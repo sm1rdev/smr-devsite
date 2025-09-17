@@ -1,7 +1,8 @@
 import { createApp } from 'vue'
 import './style.css'
 import App from './App.vue'
-import router from './router'
+import router from './app/router'
+import i18n from './app/locales/i18n'
 
 
 import '@fortawesome/fontawesome-free/css/all.css'
@@ -15,4 +16,8 @@ const naive = create({
     NCarousel, NModal, NImage]
 })
 
-createApp(App).use(naive).use(router).mount('#app')
+createApp(App)
+  .use(naive)
+  .use(router)
+  .use(i18n)
+  .mount('#app')

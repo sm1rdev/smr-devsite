@@ -1,8 +1,8 @@
 from rest_framework.routers import DefaultRouter
-from .views import SocialViewSet
+from .views import LinkViewSet
 
 
 router = DefaultRouter()
-router.register(r'', SocialViewSet, basename="social")
+router.register(r'', LinkViewSet, basename="link")
 
 urlpatterns = router.urls

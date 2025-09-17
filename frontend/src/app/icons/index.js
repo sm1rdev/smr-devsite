@@ -1,4 +1,4 @@
-import fab_icons from '../assets/data/icons.json'
+import fab_icons from './icons.json'
 
 
 export function get_fab_icon(name) {

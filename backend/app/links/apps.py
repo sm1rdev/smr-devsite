@@ -1,6 +1,6 @@
 from django.apps import AppConfig
 
 
-class SocialsConfig(AppConfig):
+class LinksConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
-    name = 'socials'
+    name = 'links'

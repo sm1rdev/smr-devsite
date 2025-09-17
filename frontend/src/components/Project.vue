@@ -1,6 +1,6 @@
 <script setup>
     import { ref, computed, defineProps } from 'vue';
-    import { get_fab_icon } from '../app/icons';
+    import { get_fab_icon } from '../app/icons/index';
     const showContent = ref(false);
 
     const props = defineProps({
