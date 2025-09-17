@@ -1,5 +1,6 @@
 <script setup>
     import { ref, computed, defineProps } from 'vue';
+    import { get_fab_icon } from '../app/icons';
     const showContent = ref(false);
 
     const props = defineProps({
@@ -37,7 +38,7 @@
                     <n-button text tag="a" :href="link.link" target="_blank" style="padding: 5px;"
                     v-for="(link, index) in props.links" :key="index">
                         <template #icon>
-                            <i :class="link.fab_icon" style="color: white;"></i>
+                            <i :class="get_fab_icon(link.fab_icon).fab_icon" :style="`color: ${get_fab_icon(link.fab_icon).color}`"></i>
                         </template>
                     </n-button>
 

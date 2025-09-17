@@ -1,0 +1,5 @@
+[
+    {"name": "default", "fab_icon": "fa-solid fa-circle-question", "color": "gray"},
+    {"name": "youtube", "fab_icon": "fa-brands fa-youtube", "color": "red"},
+    {"name": "github", "fab_icon": "fa-brands fa-github", "color": "white"}
+]

@@ -1,5 +1,6 @@
 <script setup>
     import { defineProps } from 'vue';
+    import { get_fab_icon } from '../app/icons';
 
     const props = defineProps({
         name: String,
@@ -15,7 +16,7 @@
             <div style="display: flex; justify-content: space-between; align-items: center; padding: 10px 20px;">
 
                 <div style="display: flex; align-items: center; gap: 10px;">
-                    <i :class="props.fab_icon" style="color: red;"></i>
+                    <i :class="get_fab_icon(props.fab_icon).fab_icon" :style="`color: ${get_fab_icon(props.fab_icon).color}`"></i>
                     <h3 style="color: white;">{{props.name}}</h3>
                 </div>
 
