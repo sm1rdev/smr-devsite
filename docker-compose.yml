@@ -1,0 +1,40 @@
+services:
+  backend:
+    build: ./backend
+    restart: always
+    expose:
+    - "8000"
+
+  frontend:
+    build: ./frontend
+    restart: always
+    environment:
+    - VIRTUAL_HOST=example.com
+    - LETSENCRYPT_HOST=example.com
+    - LETSENCRYPT_EMAIL=example@example.com
+    depends_on:
+      - backend
+
+  proxy:
+    image: nginxproxy/nginx-proxy
+    restart: always
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - /var/run/docker.sock:/tmp/docker.sock:ro
+      - ./certs:/etc/nginx/certs
+      - ./vhost.d:/etc/nginx/vhost.d
+      - ./html:/usr/share/nginx/html
+
+  letsencrypt:
+    image: nginxproxy/acme-companion
+    restart: always
+    depends_on:
+      - proxy
+    volumes_from:
+      - proxy
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - ./certs:/etc/nginx/certs
+      - ./acme:/etc/acme.sh
