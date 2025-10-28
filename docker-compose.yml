@@ -4,16 +4,21 @@ services:
     restart: always
     expose:
     - "8000"
+    volumes:
+      - static_volume:/app/app/staticfiles
 
   frontend:
     build: ./frontend
     restart: always
     environment:
-    - VIRTUAL_HOST=example.com
-    - LETSENCRYPT_HOST=example.com
+    - VIRTUAL_HOST=example.ru
+    - LETSENCRYPT_HOST=example.ru
     - LETSENCRYPT_EMAIL=example@example.com
     depends_on:
       - backend
+    volumes:
+      - static_volume:/usr/share/nginx/html/static
+
 
   proxy:
     image: nginxproxy/nginx-proxy
@@ -38,3 +43,6 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock:ro
       - ./certs:/etc/nginx/certs
       - ./acme:/etc/acme.sh
+
+volumes:
+  static_volume:
